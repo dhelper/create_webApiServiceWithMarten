@@ -12,14 +12,11 @@ namespace UsersService.Controllers
     [Route("[controller]")]
     public class UsersController : ControllerBase
     {
-        private readonly IUsersRepository _usersRepository;
         private readonly ILogger<UsersController> _logger;
 
         public UsersController(
-            IUsersRepository usersRepository,
             ILogger<UsersController> logger)
         {
-            _usersRepository = usersRepository;
             _logger = logger;
         }
 
@@ -29,7 +26,7 @@ namespace UsersService.Controllers
         /// <param name="userCreate"></param>
         /// <returns>the created user</returns>
         [HttpPost]
-        public User CreateNewUser([FromBody] string userName)
+        public User CreateNewUser([FromBody] UserCreate userCreateData)
         {
             return null;
         }
