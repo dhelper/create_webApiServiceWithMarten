@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UsersService</name>
+    </assembly>
+    <members>
+        <member name="M:UsersService.Controllers.UsersController.CreateNewUser(UsersService.Controllers.UserCreateDto)">
+            <summary>
+            Create a new user
+            </summary>
+            <param name="userCreate"></param>
+            <returns>the created user</returns>
+        </member>
+        <member name="M:UsersService.Controllers.UsersController.GetAllUsers">
+            <summary>
+            Returns all users 
+            </summary>
+        </member>
+        <member name="M:UsersService.Controllers.UsersController.Get(System.Int32)">
+            <summary>
+            Get user by Id
+            </summary>
+        </member>
+        <member name="M:UsersService.Controllers.UsersController.Delete(System.Int32)">
+            <summary>
+            Delete user by id
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  usersservice:
+    image: ${DOCKER_REGISTRY-}usersservice
+    build:
+      context: .
+      dockerfile: UsersService/Dockerfile
+    environment:
+      DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=values_db;username=dbuser;password=dbpwd"
+
+  postgres_image:
+    image: postgres:12.1-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "dbuser"
+      POSTGRES_PASSWORD: "dbpwd"
+      POSTGRES_DB: "values_db"
