@@ -33,7 +33,7 @@ namespace UsersService.Tests
         }
 
         [TestMethod]
-        public void Task1_UsersControllerShouldHaveONlyONeCopnstructor()
+        public void Task1_UsersControllerShouldHaveONlyOneConstructor()
         {
             var constructorInfos = typeof(UsersController).GetConstructors();
 
