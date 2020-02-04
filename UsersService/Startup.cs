@@ -30,6 +30,8 @@ namespace UsersService
         {
             services.AddControllers();
 
+            services.AddScoped<IUsersRepository, UsersRepository>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Users service API", Version = "v1" });

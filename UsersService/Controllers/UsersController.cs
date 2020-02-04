@@ -13,17 +13,18 @@ namespace UsersService.Controllers
     public class UsersController : ControllerBase
     {
         private readonly ILogger<UsersController> _logger;
+        private readonly IUsersRepository _usersRepository;
 
-        public UsersController(
-            ILogger<UsersController> logger)
+        public UsersController(IUsersRepository userRepository, ILogger<UsersController> logger)
         {
+            _usersRepository = userRepository;
             _logger = logger;
         }
 
         /// <summary>
         /// Create a new user
         /// </summary>
-        /// <param name="userCreate"></param>
+        /// <param name="userCreateData">new user information</param>
         /// <returns>the created user</returns>
         [HttpPost]
         public User CreateNewUser([FromBody] UserCreate userCreateData)
