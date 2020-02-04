@@ -23,10 +23,10 @@ namespace UsersService.Controllers
         /// <summary>
         /// Create a new user
         /// </summary>
-        /// <param name="userCreate"></param>
+        /// <param name="userCreateData">new user information</param>
         /// <returns>the created user</returns>
         [HttpPost]
-        public User CreateNewUser([FromBody] UserCreate userCreateData)
+        public string CreateNewUser([FromBody] UserCreate userCreateData)
         {
             return null;
         }

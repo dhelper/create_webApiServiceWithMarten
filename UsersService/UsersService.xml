@@ -28,7 +28,7 @@
             <summary>
             Create a new user
             </summary>
-            <param name="userCreate"></param>
+            <param name="userCreateData">new user information</param>
             <returns>the created user</returns>
         </member>
         <member name="M:UsersService.Controllers.UsersController.GetAllUsers">
