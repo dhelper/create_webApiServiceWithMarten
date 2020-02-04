@@ -14,7 +14,7 @@ namespace UsersService.DataAccess
             _connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
         }
 
-        public string CreateNewUser(User user)
+        public string CreateNewUser(string name, string email, int age)
         {
             throw new System.NotImplementedException();
         }

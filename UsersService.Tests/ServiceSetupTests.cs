@@ -1,12 +1,10 @@
 using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 using Autofac.Extras.FakeItEasy;
 using FakeItEasy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using UsersService.Controllers;
 using UsersService.DataAccess;
 
@@ -21,7 +19,7 @@ namespace UsersService.Tests
             var serviceCollection = new ServiceCollection();
             IConfiguration fakeConfiguration = A.Fake<IConfiguration>();
             serviceCollection.AddScoped(provider => fakeConfiguration);
-            
+
             var startup = new Startup(fakeConfiguration);
 
             startup.ConfigureServices(serviceCollection);
@@ -53,7 +51,7 @@ namespace UsersService.Tests
         [TestMethod]
         public void Task1_UserRepositoryShouldBeStoredInUsersController()
         {
-            using(var fake = new AutoFake())
+            using (var fake = new AutoFake())
             {
                 var fakeUsersRepository = A.Fake<IUsersRepository>();
                 fake.Provide(fakeUsersRepository);

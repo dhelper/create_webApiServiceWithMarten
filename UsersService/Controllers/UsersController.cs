@@ -27,9 +27,11 @@ namespace UsersService.Controllers
         /// <param name="userCreateData">new user information</param>
         /// <returns>the created user</returns>
         [HttpPost]
-        public User CreateNewUser([FromBody] UserCreate userCreateData)
+        public String CreateNewUser([FromBody] UserCreate userCreateData)
         {
-            return null;
+            var id = _usersRepository.CreateNewUser(userCreateData.Name, userCreateData.Email, userCreateData.Age);
+            
+            return id;
         }
 
         /// <summary>
