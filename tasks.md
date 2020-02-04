@@ -4,16 +4,28 @@
 This exercise is meant top be run on Windows using Visual Studio 2019 and .NET Core 3.1.
 
 ### Docker
-In this exercise we will use Linux containers and so you'll need to [download and install Docker](https://docs.docker.com/docker-for-windows/install/)
+In this exercise we will use Linux containers and so you'll need to [download and install Docker](https://docs.docker.com/docker-for-windows/install/) on your develpoment machine.
 
-### Visual Studio 2019
-[Download the latest installer](https://visualstudio.microsoft.com/downloads/), make sure to install ASP .NET  development especialy .NET Core support
+### Visual Studio 2019 (and edition)
+[Download the latest installer](https://visualstudio.microsoft.com/downloads/) and run it, make sure to install ASP .NET  development especialy .NET Core support
 
 ### .NET Core 3.1
 If you do not have the LTS version of .NET Core 3.1 installed [download the SDK microsoft](https://dotnet.microsoft.com/download/dotnet-core)
 
 ## Testing your environment
-Once you've opened the solution in Visual Studio, check that the current debug run is set to _docker compose_ then press __F5__, after a few minutes a broswer window should open with the swagger page of the users service that has four different operations. When we add more functionlity to the users serviuce you can run the solution the same way, test the functionality and debug your code.
+Once you've opened the solution in Visual Studio, check that the current debug run is set to _docker compose_: ![debug docker compose](./Images/debug_docker_compose.PNG)
+
+Press __F5__, after a few minutes a broswer window should open with the swagger page of the users service that has four different operations. 
+![swagger on browser](./Images/swagger_on_browser.PNG)
+When we add more functionlity to the users serviuce you can run the solution the same way, test the functionality and debug your code.
+
+_Now you can stop the debugging session and start adding functionality to the new service._
+
+## Running the tests
+You can either run the tests from the command line using:   
+_dotnet test UsersService.sln_  
+or from within Visual Studio using:  
+_Ctrl + R, A_ to run all tests
 
 ## 1 - Add User's repository to dependency injection.
 
