@@ -28,17 +28,32 @@ or from within Visual Studio using:
 _Ctrl + R, A_ to run all tests
 
 ## 1 - Add User's repository to dependency injection.
+In __Startup.cs__ file add the following line inside __ConfigureServices__ method:
+```
+services.AddScoped<IUsersRepository, UsersRepository>();
+```
+So that the method would look something like this:
+```
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllers();
 
-## 2 - Add referece to user's repository in controller
+    services.AddScoped<IUsersRepository, UsersRepository>();
+```
+Next open __UsersController.cs__ and add _IUserRepository_ as a parameter to the class constructor:
+```
+public UsersController(IUsersRepository userRepository ...
+```
+Then store that value in a field inside __UsersController__
 
-## 3 - Add call to user repository from controller
+## 2 - Add call to user repository from controller
 
-## 4 - implement create new user
+## 3 - implement create new user
 
-## 5 add call to get all users from controller
+## 4 add call to get all users from controller
 
-## 6 - implement get all users
+## 5 - implement get all users
 
-## 7 - implement get user by id
+## 6 - implement get user by id
 
-## 8 - implement delete user by Id
+## 7 - implement delete user by Id
