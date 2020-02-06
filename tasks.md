@@ -14,6 +14,7 @@ If you do not have the LTS version of .NET Core 3.1 installed [download the SDK 
 
 ## Testing your environment
 Once you've opened the solution in Visual Studio, check that the current debug run is set to _docker compose_: ![debug docker compose](./Images/debug_docker_compose.PNG)
+* If you do not see Docker Compose as a valid value open Solution Explorer and right click on the docker-compose file and choose __Set as StartUp Project__
 
 Press __F5__, after a few minutes a broswer window should open with the swagger page of the users service that has four different operations. 
 ![swagger on browser](./Images/swagger_on_browser.PNG)
@@ -49,7 +50,41 @@ Then store that value in a field inside __UsersController__
 ## 2 - Add call to user repository from controller
 Inside _UsersController.CreateNewUser_ add a call to user repository passing the data we've recieved from User create.
 
-## 3 - implement create new user
+## 3 - implement create new user in repository
+In __Startup.cs__ file add the following line inside __ConfigureServices__ method:
+```
+services.AddScoped<IDocumentStoreFactory, DocumentStoreFactory>();
+```
+
+Next make sure that IDocumentStoreFactory is passed to the UsersRepository constructor and it's value is save in a field:
+```
+UsersRepository(IDocumentStoreFactory documentStoreFactory){
+    _documentStoreFactory = documentStoreFactory;
+}
+```
+Finally you'll need to open a new session to the DB using the _documentStoreFactory_ then store the new value and then call _Save_.
+Add the following code Inside __UsersRepository.CreateNewUser__:
+```
+public int CreateNewUser(string name, string email, int age)
+{
+    var newUser = new User
+    {
+        Name = name, 
+        Email = email, 
+        Age = age
+    };
+
+    using (var session = _documentStoreFactory.Store.OpenSession())
+    {
+        session.Store(newUser);
+
+        session.SaveChanges();
+    }
+
+    return newUser.Id;
+}
+```
+All of the tests starting with "Test1_", "Test2_" and "Test3_" should pass now, and you can debug the new add user functionality and check that an Id (GUID) is returned when the method runs
 
 
 ## 4 add call to get all users from controller
