@@ -31,6 +31,7 @@ namespace UsersService
             services.AddControllers();
 
             services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<IDocumentStoreFactory, DocumentStoreFactory>();
 
             services.AddSwaggerGen(c =>
             {

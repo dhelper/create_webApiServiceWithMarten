@@ -7,16 +7,30 @@ namespace UsersService.DataAccess
 {
     public class UsersRepository : IUsersRepository
     {
-        private readonly string _connectionString;
+        private readonly IDocumentStoreFactory _documentStoreFactory;
 
-        public UsersRepository(IConfiguration config)
+        public UsersRepository(IDocumentStoreFactory documentStoreFactory)
         {
-            _connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+            _documentStoreFactory = documentStoreFactory;
         }
 
-        public string CreateNewUser(string name, string email, int age)
+        public int CreateNewUser(string name, string email, int age)
         {
-            throw new System.NotImplementedException();
+            var newUser = new User
+            {
+                Name = name, 
+                Email = email, 
+                Age = age
+            };
+
+            using (var session = _documentStoreFactory.Store.OpenSession())
+            {
+                session.Store(newUser);
+
+                session.SaveChanges();
+            }
+
+            return newUser.Id;
         }
 
         public IEnumerable<User> GetAllUsers()

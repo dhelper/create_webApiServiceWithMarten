@@ -16,6 +16,26 @@ namespace UsersService.Tests
             return GetMethodCall(method) != null;
         }
 
+        public static bool WasCalled(Expression<Action> method)
+        {
+            return GetMethodCall(method) != null;
+        }
+
+        public static ICompletedFakeObjectCall GetMethodCall(Expression<Action> method)
+        {
+            var methodCall = method.Body as MethodCallExpression;
+            if (methodCall != null)
+            {
+                string methodName = methodCall.Method.Name;
+                
+                var fakeInstance = GetFakeInstance((MemberExpression) methodCall.Object);
+                
+                return Fake.GetCalls(fakeInstance).FirstOrDefault(call => call.Method.Name.Equals(methodName));
+            }
+
+            throw new InvalidOperationException("Argument is not a method");
+        }
+
         public static ICompletedFakeObjectCall GetMethodCall<T>(Expression<Func<T>> method)
         {
             var methodCall = method.Body as MethodCallExpression;
