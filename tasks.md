@@ -47,8 +47,10 @@ public UsersController(IUsersRepository userRepository ...
 Then store that value in a field inside __UsersController__
 
 ## 2 - Add call to user repository from controller
+Inside _UsersController.CreateNewUser_ add a call to user repository passing the data we've recieved from User create.
 
 ## 3 - implement create new user
+
 
 ## 4 add call to get all users from controller
 
