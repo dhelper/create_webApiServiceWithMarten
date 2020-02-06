@@ -14,7 +14,7 @@ namespace UsersService.DataAccess
             _connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
         }
 
-        public string CreateNewUser(string name, string email, int age)
+        public int CreateNewUser(string name, string email, int age)
         {
             throw new System.NotImplementedException();
         }
@@ -24,12 +24,12 @@ namespace UsersService.DataAccess
             throw new System.NotImplementedException();
         }
 
-        public User GetUserById(string id)
+        public User GetUserById(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public void DeleteUser(string id)
+        public void DeleteUser(int id)
         {
             throw new System.NotImplementedException();
         }

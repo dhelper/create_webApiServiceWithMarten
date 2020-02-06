@@ -44,19 +44,19 @@ namespace UsersService.Tests
         }
 
         [TestMethod]
-        public void Task2_CreateNewUserShouldReturnCreatedUser()
+        public void Task2_CreateNewUserShouldReturnCreatedUserId()
         {
             using var fake = new AutoFake();
 
             var fakeUsersRepository = fake.Resolve<IUsersRepository>();
             A.CallTo(() => fakeUsersRepository.CreateNewUser(A<String>._, A<string>._, A<int>._))
-                .Returns("user-1");
+                .Returns(123);
 
             var usersController = fake.Resolve<UsersController>();
 
             var actual = usersController.CreateNewUser(new UserCreate());
 
-            Assert.AreSame("user-1", actual, UserIdNotReturnedError);
+            Assert.AreEqual(123, actual, UserIdNotReturnedError);
         }
 
         #region errors
@@ -68,7 +68,7 @@ Error: UsersRepository.CreateNewUser was not called
     Expected UsersRepository.CreateNewUser(...) to be called as part of user creation
     Add the following line to UsersController.CreateNewUser:
 
-    public string CreateNewUser([FromBody] UserCreate userCreateData)
+    public int CreateNewUser([FromBody] UserCreate userCreateData)
     {
         _usersRepository.CreateNewUser(""name"", ""email"", 1234);    
     
@@ -83,7 +83,7 @@ Error: UsersRepository.CreateNewUser did not receive user's name
     
     Example:
 
-    public string CreateNewUser([FromBody] UserCreate userCreateData)
+    public int CreateNewUser([FromBody] UserCreate userCreateData)
     {
         _usersRepository.CreateNewUser(userCreateData.Name, ..., ...);    
     
@@ -97,7 +97,7 @@ Error: UsersRepository.CreateNewUser did not receive user's email
     
     Example:
 
-    public string CreateNewUser([FromBody] UserCreate userCreateData)
+    public int CreateNewUser([FromBody] UserCreate userCreateData)
     {
         _usersRepository.CreateNewUser(..., userCreateData.Email, ...);    
     
@@ -111,7 +111,7 @@ Error: UsersRepository.CreateNewUser did not receive user's age
     
     Example:
 
-    public string CreateNewUser([FromBody] UserCreate userCreateData)
+    public int CreateNewUser([FromBody] UserCreate userCreateData)
     {
         _usersRepository.CreateNewUser(..., ..., userCreateData.Age);    
     
@@ -125,7 +125,7 @@ Error: Created user's id not returned from method call
 
     Example:
 
-    public string CreateNewUser([FromBody] UserCreate userCreateData)
+    public int CreateNewUser([FromBody] UserCreate userCreateData)
     {
         var id = _usersRepository.CreateNewUser(..., ..., ...);    
 
