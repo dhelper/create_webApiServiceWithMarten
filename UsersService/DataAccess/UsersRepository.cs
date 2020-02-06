@@ -38,12 +38,12 @@ namespace UsersService.DataAccess
             throw new System.NotImplementedException();
         }
 
-        public User GetUserById(string id)
+        public User GetUserById(int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public void DeleteUser(string id)
+        public void DeleteUser(int id)
         {
             throw new System.NotImplementedException();
         }

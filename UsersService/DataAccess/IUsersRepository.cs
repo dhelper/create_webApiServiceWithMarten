@@ -7,7 +7,7 @@ namespace UsersService.DataAccess
     {
         int CreateNewUser(string name, string email, int age);
         IEnumerable<User> GetAllUsers();
-        User GetUserById(string id);
-        void DeleteUser(string id);
+        User GetUserById(int id);
+        void DeleteUser(int id);
     }
 }
