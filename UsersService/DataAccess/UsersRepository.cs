@@ -16,22 +16,17 @@ namespace UsersService.DataAccess
 
         public int CreateNewUser(string name, string email, int age)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<User> GetAllUsers()
-        {
-            throw new System.NotImplementedException();
+            throw new System.NotImplementedException("UsersRepository.CreateNewUser(string name, string email, int age) not implemented yet read tasks.md for details");
         }
 
         public User GetUserById(int id)
         {
-            throw new System.NotImplementedException();
+            throw new System.NotImplementedException("UsersRepository.GetUserById(int id) not implemented yet read tasks.md for details");
         }
 
         public void DeleteUser(int id)
         {
-            throw new System.NotImplementedException();
+            throw new System.NotImplementedException("UsersRepository.DeleteUser(int id) not implemented yet read tasks.md for details");
         }
     }
 }

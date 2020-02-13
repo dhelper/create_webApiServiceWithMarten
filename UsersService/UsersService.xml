@@ -31,12 +31,7 @@
             <param name="userCreateData">new user information</param>
             <returns>the created user</returns>
         </member>
-        <member name="M:UsersService.Controllers.UsersController.GetAllUsers">
-            <summary>
-            Returns all users 
-            </summary>
-        </member>
-        <member name="M:UsersService.Controllers.UsersController.Get(System.Int32)">
+        <member name="M:UsersService.Controllers.UsersController.GetUserById(System.Int32)">
             <summary>
             Get user by Id
             </summary>

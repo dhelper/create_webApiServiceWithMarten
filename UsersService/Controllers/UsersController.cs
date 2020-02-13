@@ -28,25 +28,16 @@ namespace UsersService.Controllers
         [HttpPost]
         public int CreateNewUser([FromBody] UserCreate userCreateData)
         {
-            return -1;
-        }
-
-        /// <summary>
-        /// Returns all users 
-        /// </summary>
-        [HttpGet]
-        public IEnumerable<User> GetAllUsers()
-        {
-            return Enumerable.Empty<User>();
+            throw new NotImplementedException("CreateNewUser is not implemented yet, check tasks.md for instructions");
         }
 
         /// <summary>
         /// Get user by Id
         /// </summary>
         [HttpGet("{id}")]
-        public User Get(int id)
+        public User GetUserById(int id)
         {
-            return null;
+            throw new NotImplementedException("GetUserById is not implemented yet, check tasks.md for instructions");
         }
 
         /// <summary>
@@ -55,7 +46,7 @@ namespace UsersService.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-
+            throw new NotImplementedException("Delete is not implemented yet, check tasks.md for instructions");
         }
     }
 }

@@ -84,13 +84,60 @@ public int CreateNewUser(string name, string email, int age)
     return newUser.Id;
 }
 ```
-All of the tests starting with "Test1_", "Test2_" and "Test3_" should pass now, and you can debug the new add user functionality and check that an Id (GUID) is returned when the method runs
+All of the tests starting with "Test1_", "Test2_" and "Test3_" should pass now, and you can start a debugging session and create a new user using swagger, notice that an  Id (int) is returned when the method runs
 
+## 4 - implement get user by id
+Now that you know how to use the controller and repository in order to update the database you can add the ability to get a user by it's id (the valuem returned when we've created a new user).
+Start by adding a call inside the controller's method _GetUserById_:
+```
+/// <summary>
+/// Get user by Id
+/// </summary>
+[HttpGet("{id}")]
+public User GetUserById(int id)
+{
+    return _usersRepository.GetUserById(id);
+}
+```
+Next implement UsersRepository.GetUserById method.
+First open a new session using __documentStoreFactory.Store_ but this time instead of opening a "regular session" we'll opne a query session:
+```
+using (var session = _documentStoreFactory.Store.QuerySession())
+{
 
-## 4 add call to get all users from controller
+}
+```
+Inside the using block add a call to _session.Load_ using the user type and user Id passed to the method:
+```
+using (var session = _documentStoreFactory.Store.QuerySession())
+{
+    return session.Load<User>(id);
+}
+```
+All of the tests that starts with _Task4__ should pass and now you can start a new debug run, create a new user and then retrieve it.
 
-## 5 - implement get all users
+## 5 - add call to get all users 
+Getting all the users using Marten is done similarly to GetUserById:
+Call the UsersRepository  from the controller and open a new QuerySession, only this time instead `session.Load<User>(id)` we'll use `session.Query<User>()`:
+```
+using (var session = _documentStoreFactory.Store.QuerySession())
+{
+    return session.Query<User>().ToList();
+}
+```
 
-## 6 - implement get user by id
+## 6 - implement delete user by Id
+Deleting a user will be done by opening a new session then calling `session.Delete<User>(id);` followed by `session.SaveChanges`.
+After you've added a call to the _UsersRepository_ from within _UsersController_ passing the id of the user to delete add the following code to delete:
+```
+using (var session = _documentStoreFactory.Store.OpenSession())
+{
+    session.Delete<User>(id);
 
-## 7 - implement delete user by Id
+    session.SaveChanges();
+}
+```
+
+## Summary
+In this tutorial you've written an  __ASP.NET Core__ micro service that uses __Marten__ to create, get and delete a User in __PostgreSQL__ using Marten.
+Feel free to try it out, either from it's swagger page or by using http calls from other tools such as _Postman_ or _curl_.
