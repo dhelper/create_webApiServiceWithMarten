@@ -35,21 +35,12 @@ namespace UsersService.Controllers
         }
 
         /// <summary>
-        /// Returns all users 
-        /// </summary>
-        [HttpGet]
-        public IEnumerable<User> GetAllUsers()
-        {
-            return Enumerable.Empty<User>();
-        }
-
-        /// <summary>
         /// Get user by Id
         /// </summary>
         [HttpGet("{id}")]
-        public User Get(int id)
+        public User GetUserById(int id)
         {
-            return null;
+            return _usersRepository.GetUserById(id);
         }
 
         /// <summary>
@@ -58,7 +49,7 @@ namespace UsersService.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-
+            _usersRepository.DeleteUser(id);
         }
     }
 }

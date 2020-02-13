@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Extensions.Configuration;
 using UsersService.Models;
 
@@ -18,8 +19,8 @@ namespace UsersService.DataAccess
         {
             var newUser = new User
             {
-                Name = name, 
-                Email = email, 
+                Name = name,
+                Email = email,
                 Age = age
             };
 
@@ -33,19 +34,22 @@ namespace UsersService.DataAccess
             return newUser.Id;
         }
 
-        public IEnumerable<User> GetAllUsers()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public User GetUserById(int id)
         {
-            throw new System.NotImplementedException();
+            using (var session = _documentStoreFactory.Store.QuerySession())
+            {
+                return session.Load<User>(id);
+            }
         }
 
         public void DeleteUser(int id)
         {
-            throw new System.NotImplementedException();
+            using (var session = _documentStoreFactory.Store.OpenSession())
+            {
+                session.Delete<User>(id);
+
+                session.SaveChanges();
+            }
         }
     }
 }
