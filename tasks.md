@@ -116,17 +116,7 @@ using (var session = _documentStoreFactory.Store.QuerySession())
 ```
 All of the tests that starts with _Task4__ should pass and now you can start a new debug run, create a new user and then retrieve it.
 
-## 5 - add call to get all users 
-Getting all the users using Marten is done similarly to GetUserById:
-Call the UsersRepository  from the controller and open a new QuerySession, only this time instead `session.Load<User>(id)` we'll use `session.Query<User>()`:
-```
-using (var session = _documentStoreFactory.Store.QuerySession())
-{
-    return session.Query<User>().ToList();
-}
-```
-
-## 6 - implement delete user by Id
+## 5 - implement delete user by Id
 Deleting a user will be done by opening a new session then calling `session.Delete<User>(id);` followed by `session.SaveChanges`.
 After you've added a call to the _UsersRepository_ from within _UsersController_ passing the id of the user to delete add the following code to delete:
 ```
